@@ -7,9 +7,10 @@ export const appRouter = router({
         text: z.string(),
       })
     )
-    .query(({ input }) => {
+    .query((context) => {
+      console.log(context.ctx.db);
       return {
-        greeting: `hello ${input.text}`,
+        greeting: `hello ${context.input.text}`,
       };
     }),
 });

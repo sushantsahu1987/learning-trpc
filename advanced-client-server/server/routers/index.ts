@@ -20,4 +20,18 @@ export const appRouter = t.router({
     console.log("ctx.user : ", ctx.user);
     return "secret data sauce";
   }),
+  getCompanies: t.procedure.query(async ({ ctx }) => {
+    const companies = await ctx.db
+      .collection("companies")
+      .find()
+      .toArray();
+    return companies;
+  }),
+  getEducation: t.procedure.query(async ({ctx}) => {
+    const education = await ctx.db
+      .collection("education")
+      .findOne()
+    return education;
+  })
+
 });

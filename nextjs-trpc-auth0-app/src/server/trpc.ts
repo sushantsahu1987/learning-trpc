@@ -68,17 +68,17 @@ const isAdminMiddleware = t.middleware(async ({ ctx, next }) => {
   const key: any = await client.getSigningKey(kid);
   const signingKey = key.publicKey || key.rsaPublicKey;
   const jwt_decoded = jwt_decode<TokenPayload>(ctx.id_token || "");
-  const sdk = new SDK();
-  try {
-    const result = await sdk.getUserByEmail(jwt_decoded.email);
-    if (result) {
-      const user = result[0];
-      const role = await sdk.getUserRole(user.user_id || "")
-      console.log(role)
-    }
-  } catch (error) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
-  }
+  // const sdk = new SDK();
+  // try {
+  //   const result = await sdk.getUserByEmail(jwt_decoded.email);
+  //   if (result) {
+  //     const user = result[0];
+  //     const role = await sdk.getUserRole(user.user_id || "")
+  //     console.log(role)
+  //   }
+  // } catch (error) {
+  //   throw new TRPCError({ code: "UNAUTHORIZED" });
+  // }
 
   try {
     const decoded = await promisifyJwt(ctx.access_token || "", signingKey);

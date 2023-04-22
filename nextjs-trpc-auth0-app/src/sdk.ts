@@ -1,4 +1,3 @@
-import { MemoryCache, caching } from "cache-manager";
 import { ManagementClient, Role, User } from "auth0";
 
 export default class SDK {
